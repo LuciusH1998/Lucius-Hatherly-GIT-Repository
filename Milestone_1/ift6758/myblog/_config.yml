@@ -1,0 +1,76 @@
+# ----------------------------------------------------------
+# JEKYLL CONFIGURATION – NHL Play-by-Play Data Analysis Blog
+# ----------------------------------------------------------
+
+title: "NHL Play-by-Play Data Analysis"
+email: lucius.hatherly@umontreal.ca
+description: "Exploring NHL play-by-play data between 2016–2024 using Python"
+
+# -----------------------------
+# URL SETTINGS
+# -----------------------------
+# Local:  http://127.0.0.1:4000/IFT-6758-Group-8-Milestone-1
+# GitHub: https://lucius1998.github.io/IFT-6758-Group-8-Milestone-1
+# url: "https://lucius1998.github.io"
+# baseurl: "/IFT-6758-Group-8-Milestone-1"
+
+url: "http://127.0.0.1:4000"        # <-- GitHub Pages base domain
+baseurl: ""   # <-- repository name (no trailing slash)
+
+twitter_username: jekyllrb
+github_username: lucius1998
+
+# -----------------------------
+# FOLDER STRUCTURE
+# -----------------------------
+markdown: kramdown
+highlighter: rouge
+
+# Ensure posts and assets are published
+collections:
+  posts:
+    output: true
+
+include:
+  - assets
+  - _pages
+  - _posts
+
+# Exclude non-site files from build (optional but recommended)
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - README.md
+  - LICENSE
+  - .gitignore
+  - .vscode
+  - "*.ipynb"
+  - "*.csv"
+
+# -----------------------------
+# THEME & PLUGINS
+# -----------------------------
+theme: minima
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# -----------------------------
+# DEFAULT FRONT MATTER
+# -----------------------------
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Team 8"
+
+# -----------------------------
+# OPTIONAL: SOCIAL LINKS
+# -----------------------------
+social_links:
+  github: "https://github.com/lucius1998"
+  linkedin: "https://www.linkedin.com/in/luciushatherly/"

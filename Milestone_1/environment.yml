@@ -1,0 +1,39 @@
+name: ift6758-conda-env
+channels:
+  - conda-forge
+dependencies:
+  # === Core ===
+  - python>=3.10
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - requests
+  - joblib
+  - scikit-learn
+  - xgboost
+  - imbalanced-learn
+  - tqdm
+  - PyYAML
+  - typing_extensions
+
+  # === Deep Learning (Q6–Q7) ===
+  - pytorch
+  - torchvision
+  - tensorflow
+
+  # === Plotting / Visualization ===
+  - plotly
+
+  # === Experiment Tracking ===
+  - pip
+  - pip:
+      - wandb==0.17.10  # Conda lacks a recent version; install via pip
+
+  # === Jupyter / Environment ===
+  - ipykernel
+  - jupyterlab>=3.0.0
+  - notebook
+  - ipywidgets
+  - ipdb
