@@ -1,0 +1,13 @@
+# Key dependencies 
+numpy
+pandas 
+scikit-learn 
+
+# Jupyter/IPython
+ipython
+ipykernel
+nbconvert
+
+# Visualization Libraries 
+matplotlib
+seaborn

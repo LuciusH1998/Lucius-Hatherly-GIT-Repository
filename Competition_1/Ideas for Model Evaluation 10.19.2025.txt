@@ -1,0 +1,216 @@
+## Model Training, testing KNN, Logistic Regression, Bayes Classifier, Random Forest, Linear SVM, Bayes Classifier, Gaussian Process
+from sklearn.pipeline import make_pipeline, Pipeline
+from sklearn.preprocessing import PolynomialFeatures, StandardScaler, OneHotEncoder, MinMaxScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.neighbors import KNeighborsClassifier, KernelDensity
+from sklearn.naive_bayes import GaussianNB, ComplementNB
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.linear_model import LogisticRegression, LinearRegression
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.gaussian_process import GaussianProcessClassifier
+from sklearn.gaussian_process.kernels import RBF
+import numpy as np
+
+This method should work like this, 
+
+Best_Models []
+
+Classifier = KNN
+
+Train KNN classifier on hyperparameters 
+
+Evaluate KNN model
+
+Add most accurate KNN Model to Best_Models, (Metric for best model should include accuracy, precision, recall, F1-score, and have confiusion matrix) on both the training and validation sets)
+
+Repeat this same process for Logistic Regression, Bayes Classifier, Random Forest, Linear SVM, Bayes Classifier, Gaussian Process 
+
+Best Model array should then return the best model for the data where we further provide the accuracy metrics, confusion matrix and 3. **Feature Importance**: If applicable, analyze the importance of different features in the model. You can for example, discuss which chemical properties are most influential in predicting beer quality.
+4. **Error Analysis**: Investigate the instances where the model made incorrect predictions. Look for patterns in the misclassifications and consider potential reasons for these errors.
+
+Use the code below as a basis: 
+
+## Training:
+
+from sklearn.pipeline import make_pipeline, Pipeline
+from sklearn.preprocessing import PolynomialFeatures, StandardScaler, OneHotEncoder, MinMaxScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.neighbors import KNeighborsClassifier, KernelDensity
+from sklearn.naive_bayes import GaussianNB, ComplementNB
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.linear_model import LogisticRegression, LinearRegression
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.gaussian_process import GaussianProcessClassifier
+from sklearn.gaussian_process.kernels import RBF
+import numpy as np
+
+# ---------------------------------------------------------------
+# Define Preprocessor (Numeric + Categorical)
+# ---------------------------------------------------------------
+numeric_cols = df_train.select_dtypes(include=['float64', 'int64']).columns.drop('quality', errors='ignore')
+categorical_cols = ['beer_style']
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), numeric_cols),
+        ('cat', OneHotEncoder(drop='first', handle_unknown='ignore'), categorical_cols)
+    ]
+)
+
+preprocessor_nb = ColumnTransformer(
+    transformers=[
+        ('num', MinMaxScaler(), numeric_cols),
+        ('cat', OneHotEncoder(drop='first', handle_unknown='ignore'), categorical_cols)
+    ]
+)
+
+# ---------------------------------------------------------------
+# Define Models with Preprocessing Pipelines
+# ---------------------------------------------------------------
+models = {
+    "Logistic Regression": Pipeline([
+        ('preprocess', preprocessor),
+        ('clf', LogisticRegression(max_iter=2000,
+        solver='lbfgs',
+        C=1.0,
+        penalty='l2',
+        class_weight='balanced',
+        random_state=42))
+    ]),
+    "Linear SVM": Pipeline([
+        ('preprocess', preprocessor),
+        ('clf', SVC(kernel="linear", probability=True, random_state=42))
+    ]),
+    "Random Forest": Pipeline([
+        ('preprocess', preprocessor),
+        ('clf', RandomForestClassifier(n_estimators=200, max_depth=20,
+        min_samples_split=4,
+        min_samples_leaf=2,
+        max_features='sqrt',
+        bootstrap=True,
+        random_state=42,
+        class_weight='balanced_subsample'))
+    ]),
+    "KNN (k=15)": Pipeline([
+        ('preprocess', preprocessor),
+        ('clf', KNeighborsClassifier(n_neighbors=15,
+        weights='distance',
+        metric='minkowski',
+        p=2))
+    ]),
+    "KNN (k=30)": Pipeline([
+        ('preprocess', preprocessor),
+        ('clf', KNeighborsClassifier(n_neighbors=30, weights='distance',
+        metric='minkowski',
+        p=2))
+    ]),
+    "Gaussian Naive Bayes": Pipeline([
+        ('preprocess', preprocessor_nb),
+        ('clf', GaussianNB())
+    ]),
+    "Complement Naive Bayes": Pipeline([
+        ('preprocess', preprocessor_nb),
+        ('clf', ComplementNB())
+    ]),
+    "Polynomial Regression (deg=3)": Pipeline([
+        ('preprocess', preprocessor),
+        ('poly', PolynomialFeatures(degree=3)),
+        ('clf', LinearRegression())
+    ]),
+    # Optional experimental:
+    "Gradient Boosting (experimental)": Pipeline([
+        ('preprocess', preprocessor),
+        ('clf', HistGradientBoostingClassifier(
+    max_depth=6,
+    learning_rate=0.1,
+    max_iter=600,
+    class_weight='balanced',
+    random_state=42))
+    ]), 
+    "Gaussian Process": Pipeline([
+        ('preprocess', preprocessor),
+        ('clf',  GaussianProcessClassifier(1.0 * RBF(1.0), random_state=42))])
+}
+
+# ---------------------------------------------------------------
+# Custom Parzen Window Classifier (kept separate)
+# ---------------------------------------------------------------
+class ParzenWindowClassifier:
+    def __init__(self, bandwidth=0.5, preprocessor=None):
+        self.bandwidth = bandwidth
+        self.models = {}
+        self.preprocessor = preprocessor
+
+    def fit(self, X, y):
+        if self.preprocessor is not None:
+            X = self.preprocessor.fit_transform(X)
+        for c in np.unique(y):
+            kde = KernelDensity(kernel="gaussian", bandwidth=self.bandwidth)
+            kde.fit(X[y == c])
+            self.models[c] = kde
+
+    def predict(self, X):
+        if self.preprocessor is not None:
+            X = self.preprocessor.transform(X)
+        log_probs = np.array([self.models[c].score_samples(X) for c in self.models])
+        return np.argmax(log_probs, axis=0)
+
+
+# ---------------------------------------------------------------
+# Train Models
+# ---------------------------------------------------------------
+trained_models = {}
+for name, model in models.items():
+    print(f"\n🔹 Training {name}...")
+    if isinstance(model, ParzenWindowClassifier):
+        # Manually encode for Parzen Window
+        X_train_encoded = preprocessor.fit_transform(X_train)
+        model.fit(X_train_encoded, y_train.values)
+    else:
+        model.fit(X_train, y_train)
+    trained_models[name] = model
+
+print("\n✅ Training completed for all models!")
+
+# ===============================================================
+# 📊 MODEL EVALUATION (Fixed + Safe for Regression Outputs)
+# ===============================================================
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+results = []
+
+for name, model in trained_models.items():
+    print(f"\n📈 Evaluating {name}...")
+
+    if isinstance(model, ParzenWindowClassifier):
+        y_pred = model.predict(X_val.values)
+    elif "Polynomial Regression" in name:
+        y_pred = np.round(model.predict(X_val)).astype(int)
+        y_pred = np.clip(y_pred, y_val.min(), y_val.max())  # keep in valid range
+    else:
+        y_pred = model.predict(X_val)
+
+    acc = accuracy_score(y_val, y_pred)
+    results.append((name, acc))
+    print(f"Accuracy: {acc:.4f}")
+    print(classification_report(y_val, y_pred, zero_division=0))
+
+    # --- Fixed Confusion Matrix Display ---
+    labels = np.unique(np.concatenate([y_val, y_pred]))
+    ConfusionMatrixDisplay(confusion_matrix(y_val, y_pred, labels=labels),
+                           display_labels=labels).plot(cmap="Blues")
+    plt.title(f"Confusion Matrix - {name}")
+    plt.show()
+
+# Summary
+results_df = pd.DataFrame(results, columns=["Model", "Accuracy"]).sort_values(by="Accuracy", ascending=False)
+print("\n🏆 Model Performance Summary:")
+print(results_df)
+
