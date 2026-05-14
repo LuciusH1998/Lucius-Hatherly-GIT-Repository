@@ -34,7 +34,7 @@ Implemented modern generative AI and alignment methods including DDPMs, Flow Mat
 
 ## Professional Project Description Continued
 
-1) MDM Master Data Management - Government Crown Corporation, Large Scale
+1) **MDM Master Data Management** - Government Crown Corporation, Large Scale
 Lead Developer on the Master Data Management (MDM) implementation highlights expertise in Cloud Application Integration
 (CAI) and Cloud Data Integration (CDI). Instrumental in using CAI and CDI in configuring ETL (Extract, Transform, Load)
 processes, as well as Match & Merge and other data transformation tasks, to effectively manage the ingestion and export of
@@ -42,34 +42,34 @@ data. Designed and implemented data quality, matching, and merging rules within 
 Based Access Control (RBAC) structure for various business lines, ensuring secure and efficient data access. Set up CAI APIdriven
 ETL pipelines, which streamlined data processing and integration across the organization.
 
-Technologies: Informatica Cloud, SQL, APIs, and Python
+**Technologies**: Informatica Cloud, SQL, APIs, and Python
 
-2) Data Integration Specialist - Large Insurance Company
+2) **Data Integration Specialist** - Large Insurance Company
 Designed end-to-end Informatica Cloud ETL Mappings both import and export including Data Quality rules, custom
 expressions, SQL statements, email notifications, and APIs as part of their on-premise to cloud migration process
 
-Technologies: Informatica Cloud, SQL, APIs, and Python
+**Technologies**: Informatica Cloud, SQL, APIs, and Python
 
-4) Data Governance - Major Financial Services Institution
+4) **Data Governance** - Major Financial Services Institution
 Designed end-to-end Data Governance strategy for Wealth Management division. Created templates for data domains, data
 stewardships, updates, and a preliminary Data Model that could be applied for migration SQL platform to a Cloud system
 
-5) Data Governance Strategy - Major Food Retailer
+5) **Data Governance Strategy** - Major Food Retailer
 Created Data Governance Strategy which included a new Data Dictionary, stewardship strategy, and other methods to classify
 and modify newly imported and created data assets within Informatica on-premise platforms
 
-Technologies: Informatica and Power BI
+**Technologies**: Informatica and Power BI
 
-7) Data Modelling - Canadian Government Scientific Division, Large Scale
+7) **Data Modelling** - Canadian Government Scientific Division, Large Scale
 Designed Data Model for current on-premise data divided by domain, relationships, stewards and other classification metrics
 ahead of cloud migration. Provided intensive workshops explaining the logic of the Data-Model and day-to-day stewardship
 
-8) Data Governance - Major Bank
+8) **Data Governance** - Major Bank
 Designed all technical documentation including PowerPoints and Microsoft Word documents explaining the financial
 institution's newly designed Data Governance strategy
 
-9) Salesforce Platform Engineer - Public Health for Vaccine Initiative
+9) **Salesforce Platform Engineer** - Public Health for Vaccine Initiative
 Designed and created all Salesforce tables, mappings, reports and assets related to the Covid vaccine rollout. Created weekly
 
-10) Python Developer - HR Project
+10) **Python Developer** - HR Project
 Used NLP and other models to optimize classification of keyword search for HR CVs and resume categorization. The coding was done in Python and Multinomial Bayes and transformers were used for the NLP tasks. 
