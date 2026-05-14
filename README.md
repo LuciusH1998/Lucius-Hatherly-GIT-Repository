@@ -21,7 +21,7 @@ Data Science project extracting play-by-play features for NHL hockey games acros
 Data Science project using Machine Learning methods to predict goals and results of hockey games using data from Milestone 1. The models used in this Milestone involved XGBoost, Logistic Regression, Calibration Curves, ROC curves, amongst other metrics along with libraries like scikit-learn. The code was completed with Python. 
 
 ### Hockey Milestone 3: 
-Data Science project creating a website which predicts results of hockey games and types of goals scoed using information from Milestone 2. This project involves docker, flask apps, and other container codes which ensures that the models can properly be deployed to a website. The logic of deploying this model using flask is applicable to any model deployed to a website. The coding for this project was completed in Python. 
+Data Science project creating a website which predicts results of hockey games and types of goals scored using information from Milestone 2. This project involves docker, flask apps, and other container codes which ensures that the models can properly be deployed to a website. The logic of deploying this model using flask is applicable to any model deployed to a website. The coding for this project was completed in Python. 
 
 ### Deep-Learning-Data-Augmentation: 
 Assignment which investigates different augmentation techniques in Deep Learning. Implemented MLPs, MobileNet CNNs, and U-Net segmentation architectures for image classification and semantic segmentation tasks, with professional applications in medical imaging, autonomous driving, and industrial visual inspection. The coding was completed in Python and heavily used tensorflow, scikit-learn, and pytorch. 
