@@ -1,6 +1,4 @@
 # Lucius-Hatherly-GIT-Repository
-Lucius Hatherly Personal GIT Repository 
-
 Hello, my name is Lucius Hatherly and I am a professional working at the intersection of AI, MDM, and Data. Welcome to my own GITHub. This repository covers my coding projects both personal and those completed during my Master's in Machine Learning from the MILA program at the University of Montreal. 
 
 Each branch covers its own coding project and contains its own readme file explaining the project and analyzed results. Below is a short description of each project found in the various branches along with the key ML models and libraries used. The next section explains other professional projects I have completed and the code/technology needed for said projects. 
