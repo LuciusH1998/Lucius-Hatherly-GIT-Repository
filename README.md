@@ -32,6 +32,9 @@ Built GRU, attention, and Transformer-based sequential models for sentiment anal
 ### Deep-Learning-Transformers-GRU:
 Implemented modern generative AI and alignment methods including DDPMs, Flow Matching, DPO, and reward modeling using PyTorch and GPT-2. Implemented DDPM diffusion models, Flow Matching generative models, and GPT-2 alignment techniques including reward modeling and DPO, with applications in generative AI, image synthesis, AI alignment, content generation, and large language model fine-tuning. The coding was completed in Python and heavily used tensorflow, scikit-learn, and pytorch.
 
+### NLP_Quora_Question_Pairs
+This project explored how to use state-of-the-art machine learning methods to identify semantically identical questions derived from the quora question dataset. Machine Learning methods explored included embedding methods, Logistic Regression, XGB boost, and Transformers including: DistillBERT, RoBERTa, SBERT, and ensemble methods. The project also used QWEN LLMs as a method to perform duplicate semantic detection. The coding was performed in Python and tensorflow, keras, and scikit-learn were key libraries used. 
+
 ## Professional Project Description Continued
 
 1) **MDM Master Data Management** - Government Crown Corporation, Large Scale
