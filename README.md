@@ -8,10 +8,10 @@ Each branch covers its own coding project and contains its own readme file expla
 ## Project Description 
 
 ### Beer_Classification Kaggle: 
-Kaggle competition involving using classical ML models to predict the quality of beer brands. 
+Kaggle competition using classical ML models to predict the quality of beer brands. 
 
 ### Computer Vision Kaggle: 
-Kaggle competition involving computer vision techniques to predict condition related to your retina. 
+Kaggle competition involving computer vision techniques to predict a medical condition related to your retina. 
 
 ### DRAG Graph Augmentation:
 Applying different augmentation method to DRAG architecture to see if there is any improvement in detecting fradulent credit card transactions. 
